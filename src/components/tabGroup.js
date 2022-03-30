@@ -31,14 +31,14 @@ const TabGroup = ({tabs, className}) =>
 
   const handleInteractionEnd = (e) => {
     if(e._reactName === "onTouchMove"){
-      if(e.touches[0].clientX > coords.current){
+      if(e.touches[0].clientX > coords.current + 100){
       }else if(e.touches[0].clientX < coords.current){
         swipe.current = "left"
       }
     }
     else if(e._reactName === "onMouseUp"){
       if(e.clientX > coords.current){
-      }else if(e.clientX < coords.current){
+      }else if(e.clientX < coords.current + 100){
         setActiveTab(tabs[(tabs.indexOf(activeTab) + 1) % tabs.length])
       }
     }

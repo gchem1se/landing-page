@@ -27,7 +27,6 @@ const props3 = {
 const SecondPage = () => (
   <Layout>
     <Seo title="Page two" />
-    <br />
     <section className="titleSection">
       Lorem ipsum dolor sit amet, consectetur
       <br />

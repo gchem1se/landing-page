@@ -3,3 +3,8 @@ body{
 	background-image: url("../images/background.png");
 	background-size: fit;
 }
+
+main{
+	display: flex;
+	flex-direction:column;
+}

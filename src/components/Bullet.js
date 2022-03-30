@@ -6,11 +6,11 @@ import "./Bullet.scss"
 const Bullet = ({ props }) => {
   return (
     <div className="bulletElement">
-      <div className="bulletTitle">
-        <FontAwesomeIcon icon={props.icon} color="rgba(0, 255, 41, 0.8)" />
+      <FontAwesomeIcon icon={props.icon} color={{background:"-webkit-linear-gradient(#9c47fc, #356ad2)"}} className={"bullet-icon " + (props.iconClassName || '')}/>
+      <div className={"bulletTitle "}>
         <h3>{props.title}</h3>
       </div>
-      <h4>{props.text}</h4>
+      <h4 className="bullet-content">{props.text}</h4>
     </div>
   )
 }

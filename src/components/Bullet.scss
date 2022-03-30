@@ -1,5 +1,13 @@
 .bulletElement {
     text-align: left;
+    display: grid;
+    grid-template-areas: 
+        "icon title" 
+        "null description";
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    align-items: center;
+    grid-column-gap: 1rem;
 }
 
 .bulletTitle {
@@ -7,12 +15,23 @@
     gap: 2rem;
     align-items: center;
     justify-content: left;
+    grid-area: title;
+}
+
+.bullet-icon{
+    grid-area: icon;
+    height: 32px
 }
 
 .bulletTitle h3, h4 {
     color: white;
     font-family: 'Inter', sans-serif;
     font-weight: bold;
+    margin: .5rem;
+}
+
+.bullet-content{
+    grid-area: description;
 }
 
 h4 {
