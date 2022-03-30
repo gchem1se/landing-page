@@ -5,6 +5,7 @@ import { StaticImage } from "gatsby-plugin-image"
 import TabGroup from "../components/tabGroup"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import Button from "../components/Button"
 
 const IndexPage = () => (
   <Layout>
