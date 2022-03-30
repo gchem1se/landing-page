@@ -10,6 +10,7 @@ import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
+import Footer from "./footer"
 import "./layout.scss"
 
 const Layout = ({ children }) => {
@@ -34,13 +35,37 @@ const Layout = ({ children }) => {
         }}
       >
         <main>{children}</main>
-        <footer
-          style={{
-            marginTop: `2rem`,
-          }}
-        >
-        </footer>
+        
       </div>
+      <Footer 
+        sections={[
+        {
+          title: "Company",
+          links: [
+            {
+              text: "About us",
+              href: "#"
+            },
+            {
+              text: "Careers",
+              href: "#"
+            },
+            {
+              text: "Press",
+              href: "#"
+            },
+          ]
+        },
+        {
+          title: "Learn",
+          links:[
+            {
+              text: "Contact Us",
+              href: "#"
+            }
+          ]
+        }
+      ]}/>
     </>
   )
 }

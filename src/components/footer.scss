@@ -1,0 +1,64 @@
+@import "../globals.scss";
+
+* {
+    font-family: 'Inter', sans-serif;
+}
+
+.simple-text{
+    @include simple-text;
+	font-family: 'Inria Sans', sans-serif;
+}
+
+.text-green{
+	color: $accent-color;
+}
+
+footer{
+    @include transparent-10-white;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+}
+
+.footer-info div{
+    color: #D1D5DE;
+}
+
+.footer-content{
+    display: flex;
+    flex-direction: column;
+    margin-top: .5rem;
+}
+
+.footer-section{
+    margin: .5rem 0;
+}
+
+.footer-section:first-child{
+    margin-top: 0;
+}
+
+.footer-section:last-child{
+    margin-bottom: 0;
+}
+
+.section-title{
+    color: white;
+    font-weight: bold;
+}
+
+.section-content{
+    list-style: none;
+    padding: 0;
+    margin: .5rem 0;
+}
+
+.section-item > a{
+    color: #D1D5DE;
+    text-decoration: none;
+}
+.section-item > a:hover{
+    color: white;
+}
+

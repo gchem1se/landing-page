@@ -12,24 +12,32 @@ import { faTree } from "@fortawesome/free-solid-svg-icons"
 
 import "./index.scss"
 
-const props1 = {
-  icon: faTree,
-  iconClassName: "bullet-icon",
-  title: "Coso 1 delle cose positive",
-  text: "Abiajbjk, feka fnafjapoj fuefika foanf, awfiohawfon afwl. Ainf aef ff"
-};
-const props2 = {
-  icon: faTree,
-  iconClassName: "bullet-icon",
-  title: "Questa pure è positiva, chissà come mai!",
-  text: "Un giorno un uomo tornava a casa e disse questa cosa. Quell'uomo era Jon Snow"
-};
-const props3 = {
-  icon: faTree,
-  iconClassName: "bullet-icon",
-  title: "Ta-dan, va che figo",
-  text: "In sostanza questa, essendo la terza, è figa per induzione"
-};
+const tabs = [
+  {
+    id: 1,
+    properties: {},
+    content: (
+      <div className="tab-1" >
+        <Bullet icon={faTree} title="Se ni' mondo esistesse" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor"/>
+        <Bullet icon={faTree} title="Be healthy in YOUR environment" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit"/>
+        <Bullet icon={faTree} title="Go green to get greens" text="In sostanza questa, essendo la terza, è figa per induzione"/>
+      </div>
+    )
+  },
+  {
+    id: 2,
+    properties: {
+      
+    },
+    content: (
+      <div className="tab-1" >
+        <Bullet icon={faTree} title="Se ni' mondo esistesse" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor"/>
+        <Bullet icon={faTree} title="Be healthy in YOUR environment" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit"/>
+        <Bullet icon={faTree} title="Go green to get greens" text="In sostanza questa, essendo la terza, è figa per induzione"/>
+      </div>
+    )
+  }
+]
 
 const IndexPage = () => (
   <Layout>
@@ -42,20 +50,7 @@ const IndexPage = () => (
 
     <TabGroup
       className="carousel"
-      tabs={
-      [
-        <div className="tab-1">
-          <Bullet props={props1}/>
-          <Bullet props={props2}/>
-          <Bullet props={props3}/>
-        </div>,
-        <div className="tab-1">
-          <Bullet props={props1}/>
-          <Bullet props={props2}/>
-          <Bullet props={props3}/>
-        </div>
-      ]
-    }/>
+      tabs={tabs}/>
   </Layout>
 )
 

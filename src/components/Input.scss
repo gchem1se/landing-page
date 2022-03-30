@@ -1,0 +1,30 @@
+@import "../globals.scss";
+
+input {
+    width: 70%;
+    display: grid;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    padding: 1rem 1rem;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 12px;
+    border: 0;
+    @include glassy;
+}
+
+::placeholder{
+    color: rgb(59, 59, 59);
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    text-align: left;
+}
+
+.input-big-input {
+    height: 30rem;
+}
+
+input:focus-visible{
+    border: 0;
+    outline: none;
+}

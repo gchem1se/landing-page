@@ -2,47 +2,58 @@ import * as React from "react"
 import PropTypes from "prop-types"
 import { motion, AnimatePresence } from "framer-motion"
 import { Link } from "gatsby"
+import { merge } from "lodash"
 
 import "./tabGroup.scss"
+
+const default_props = {
+  className: "tab",
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
+  active: true
+}
 
 const TabGroup = ({tabs, className}) => 
 {
   const [activeTab, setActiveTab] = React.useState(tabs[0]);
-  const coords = React.useRef(0);
-  const swipe = React.useRef("");
+  let coords;
+  let swipe = "";
 
   const handleInteractionStart = (e) => {
     if(e._reactName === "onTouchStart"){
-      coords.current = e.touches[0].clientX;
+      coords = e.touches[0].clientX
     }
     else if(e._reactName === "onMouseDown"){
-      coords.current = e.clientX;
+      coords = e.clientX
     }
   }
 
   const handleTouchUp = (e) => {
-    if(swipe.current === "left"){
+    if(swipe === "left"){
         setActiveTab(tabs[(tabs.indexOf(activeTab) + 1) % tabs.length])
     }
-    else if(swipe.current === "right"){
+    else if(swipe === "right"){
   
     }
   }
 
   const handleInteractionEnd = (e) => {
+    swipe = ""
     if(e._reactName === "onTouchMove"){
-      if(e.touches[0].clientX > coords.current + 100){
-      }else if(e.touches[0].clientX < coords.current){
-        swipe.current = "left"
+      if(e.touches[0].clientX > coords - 50){
+      }else if(e.touches[0].clientX < coords){
+        swipe = "left"
       }
     }
     else if(e._reactName === "onMouseUp"){
-      if(e.clientX > coords.current){
-      }else if(e.clientX < coords.current + 100){
+      if(e.clientX > coords){
+      }else if(e.clientX < coords - 50){
         setActiveTab(tabs[(tabs.indexOf(activeTab) + 1) % tabs.length])
       }
     }
   }
+
  
   return <div className={'tab-wrapper ' + className} onTouchStart={handleInteractionStart} onTouchMove={handleInteractionEnd} onMouseDown={handleInteractionStart} onMouseUp={handleInteractionEnd} onTouchEnd={handleTouchUp}>
     <AnimatePresence initial={false}>
@@ -50,14 +61,11 @@ const TabGroup = ({tabs, className}) =>
     {
       tabs.map((tab) => (
         tab === activeTab && 
-          (<motion.div 
-              className={ "tab" } 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              active
+          (<motion.div
+            key={tab.id}
+            {...merge(default_props, tab.properties)}
             >
-        { tab }
+        { tab.content }
         </motion.div>)
       )) 
     }

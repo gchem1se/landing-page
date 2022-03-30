@@ -11,6 +11,7 @@ module.exports = {
     `@fortawesome/fontawesome-svg-core`,
     //`@fortawesome/free-solid-svg-icons`,
     `@fortawesome/react-fontawesome`,
+    `lodash`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
