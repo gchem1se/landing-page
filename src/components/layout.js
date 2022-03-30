@@ -30,7 +30,7 @@ const Layout = ({ children }) => {
         style={{
           margin: `0 auto`,
           maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
+          padding: `0 0 0 0`,
         }}
       >
         <main>{children}</main>
@@ -39,7 +39,6 @@ const Layout = ({ children }) => {
             marginTop: `2rem`,
           }}
         >
-          Proprio così, Simone puzza
         </footer>
       </div>
     </>
