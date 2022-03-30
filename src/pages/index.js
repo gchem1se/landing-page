@@ -2,6 +2,7 @@ import * as React from "react"
 import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 
+import TabGroup from "../components/tabGroup"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
@@ -24,7 +25,7 @@ const IndexPage = () => (
       <Link to="/using-typescript/">Go to "Using TypeScript"</Link> <br />
       <Link to="/using-ssr">Go to "Using SSR"</Link> <br />
       <Link to="/using-dsg">Go to "Using DSG"</Link>
-    </p>
+    </p> 
   </Layout>
 )
 

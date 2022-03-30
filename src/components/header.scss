@@ -2,9 +2,10 @@
 
 /* Variables */
 $accent-color:	#4ADA61;
+$header-padding: .5rem;
 
 .header{
-	width: 100%;
+	width: calc(100% - 2*$header-padding);
 	height: 3rem;
 	display: flex;
 	padding: .5rem;

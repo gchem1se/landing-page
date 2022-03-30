@@ -1,0 +1,51 @@
+@import "../globals.scss";
+
+$default-padding: .5rem;
+
+.tab-wrapper{
+	display: flex;
+	flex-direction: column;
+	width: calc(100% - $default-padding);	
+	padding: $default-padding;
+}
+
+.tab-nav{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: .5rem;
+}
+
+.tabs{
+	display: flex;
+	flex-wrap: nowrap;
+}
+
+.tab{
+	width: 100%;
+
+}
+
+.nav-dot{
+	border-radius: 25px;
+	width: 20px;
+	height: 20px;
+	margin-left: .5rem;
+	margin-right: .5rem;
+	@include transparent-80-white;
+	@include elevated-1px;
+	@include glassy;
+}
+
+.nav-dot:first-child{
+	margin-left: 0;
+}
+
+.nav-dot:last-child{
+	margin-right: 0;
+}
+
+.nav-dot[active="true"]{
+	background-color: rgba(229, 229, 224, 1);
+
+}
