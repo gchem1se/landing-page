@@ -1,5 +1,6 @@
 import * as React from "react"
 import PropTypes from "prop-types"
+import { motion, AnimatePresence } from "framer-motion"
 import { Link } from "gatsby"
 
 import "./tabGroup.scss"
@@ -8,6 +9,7 @@ const TabGroup = ({tabs, className}) =>
 {
   const [activeTab, setActiveTab] = React.useState(tabs[0]);
   const coords = React.useRef(0);
+  const swipe = React.useRef("");
 
   const handleInteractionStart = (e) => {
     if(e._reactName === "onTouchStart"){
@@ -18,11 +20,20 @@ const TabGroup = ({tabs, className}) =>
     }
   }
 
+  const handleTouchUp = (e) => {
+    if(swipe.current === "left"){
+        setActiveTab(tabs[(tabs.indexOf(activeTab) + 1) % tabs.length])
+    }
+    else if(swipe.current === "right"){
+  
+    }
+  }
+
   const handleInteractionEnd = (e) => {
-    if(e._reactName === "onTouchEnd"){
+    if(e._reactName === "onTouchMove"){
       if(e.touches[0].clientX > coords.current){
       }else if(e.touches[0].clientX < coords.current){
-        setActiveTab(tabs[(tabs.indexOf(activeTab) + 1) % tabs.length])
+        swipe.current = "left"
       }
     }
     else if(e._reactName === "onMouseUp"){
@@ -33,16 +44,25 @@ const TabGroup = ({tabs, className}) =>
     }
   }
  
-  return <div className={'tab-wrapper' + className} onTouchStart={handleInteractionStart} onTouchEnd={handleInteractionEnd} onMouseDown={handleInteractionStart} onMouseUp={handleInteractionEnd}>
+  return <div className={'tab-wrapper ' + className} onTouchStart={handleInteractionStart} onTouchMove={handleInteractionEnd} onMouseDown={handleInteractionStart} onMouseUp={handleInteractionEnd} onTouchEnd={handleTouchUp}>
+    <AnimatePresence initial={false}>
     <div className="tabs">
     {
       tabs.map((tab) => (
-        <div className={ "tab " + (tab !== activeTab ? "hide" : "") } active={tab === activeTab ? "true" : "false"}>
+        tab === activeTab && 
+          (<motion.div 
+              className={ "tab" } 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              active
+            >
         { tab }
-        </div>
+        </motion.div>)
       )) 
     }
     </div>
+    </AnimatePresence>
     <div className="tab-nav">
     {
       tabs.map((tab) =>(
