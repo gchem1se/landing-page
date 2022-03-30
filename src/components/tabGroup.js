@@ -1,5 +1,6 @@
 import * as React from "react"
 import PropTypes from "prop-types"
+import { motion, AnimatePresence } from "framer-motion"
 import { Link } from "gatsby"
 
 import "./tabGroup.scss"
@@ -44,15 +45,24 @@ const TabGroup = ({tabs, className}) =>
   }
  
   return <div className={'tab-wrapper ' + className} onTouchStart={handleInteractionStart} onTouchMove={handleInteractionEnd} onMouseDown={handleInteractionStart} onMouseUp={handleInteractionEnd} onTouchEnd={handleTouchUp}>
+    <AnimatePresence initial={false}>
     <div className="tabs">
     {
       tabs.map((tab) => (
-        <div className={ "tab " + (tab !== activeTab ? "hide" : "") } active={tab === activeTab ? "true" : "false"}>
+        tab === activeTab && 
+          (<motion.div 
+              className={ "tab" } 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              active
+            >
         { tab }
-        </div>
+        </motion.div>)
       )) 
     }
     </div>
+    </AnimatePresence>
     <div className="tab-nav">
     {
       tabs.map((tab) =>(

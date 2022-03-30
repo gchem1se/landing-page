@@ -7,6 +7,8 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 import Button from "../components/Button"
 
+import "./index.scss"
+
 const IndexPage = () => (
   <Layout>
     <Seo title="Home" />
@@ -27,12 +29,15 @@ const IndexPage = () => (
       <Link to="/using-ssr">Go to "Using SSR"</Link> <br />
       <Link to="/using-dsg">Go to "Using DSG"</Link>
     </p> 
-    <TabGroup tabs={
+    <TabGroup
+      className="carousel"
+      tabs={
       [
         <div>Ciao</div>,
         <div style={{color: "white", background: "green"}}>YOYOYOYOYOYO</div>,
+        <div>.</div>
       ]
-    } />
+    }/>
   </Layout>
 )
 
