@@ -27,6 +27,12 @@ const IndexPage = () => (
       <Link to="/using-ssr">Go to "Using SSR"</Link> <br />
       <Link to="/using-dsg">Go to "Using DSG"</Link>
     </p> 
+    <TabGroup tabs={
+      [
+        <div>Ciao</div>,
+        <div style={{color: "white", background: "green"}}>YOYOYOYOYOYO</div>,
+      ]
+    } />
   </Layout>
 )
 
