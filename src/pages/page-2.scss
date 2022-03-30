@@ -13,8 +13,12 @@
   @include transparent-20-black;
   width: 100%;
   height: 100%;
-  padding-left: 4rem;
+  margin-top: 3.5rem;
   position: fixed;
+}
+
+.CTASection > * {
+  margin-left: 2.35rem;
 }
 
 .CTASection > h3 {

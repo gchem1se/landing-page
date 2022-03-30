@@ -8,6 +8,9 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
+    `@fortawesome/fontawesome-svg-core`,
+    //`@fortawesome/free-solid-svg-icons`,
+    `@fortawesome/react-fontawesome`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {

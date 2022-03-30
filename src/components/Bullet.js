@@ -1,13 +1,16 @@
-import { StaticImage } from "gatsby-plugin-image"
 import * as React from "react"
-import "./Button.scss"
+import { faTree } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import "./Bullet.scss"
 
-const Bullet = ({ title, text, icon }) => {
+const Bullet = ({ props }) => {
   return (
     <div className="bulletElement">
-      <StaticImage src={icon} />
-      <h3>{title}</h3>
-      <h4>{text}</h4>
+      <div className="bulletTitle">
+        <FontAwesomeIcon icon={props.icon} color="rgba(0, 255, 41, 0.8)" />
+        <h3>{props.title}</h3>
+      </div>
+      <h4>{props.text}</h4>
     </div>
   )
 }
