@@ -4,6 +4,7 @@ import { StaticImage } from "gatsby-plugin-image"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import Button from "../components/Button"
 
 const IndexPage = () => (
   <Layout>
@@ -25,6 +26,7 @@ const IndexPage = () => (
       <Link to="/using-ssr">Go to "Using SSR"</Link> <br />
       <Link to="/using-dsg">Go to "Using DSG"</Link>
     </p>
+    <Button text="Fuck my ass"></Button>
   </Layout>
 )
 
