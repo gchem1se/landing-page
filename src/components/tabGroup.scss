@@ -24,7 +24,7 @@ $default-padding: .5rem;
 
 .tab{
 	width: 100%;
-
+	min-height: 1rem;
 }
 
 .hide{
@@ -48,9 +48,11 @@ $default-padding: .5rem;
 
 .nav-dot:last-child{
 	margin-right: 0;
+	transition: width 150ms, height 150ms;
 }
 
 .nav-dot[active="true"]{
 	background-color: rgba(229, 229, 224, 1);
-
+	width: 24px;
+	height: 24px;
 }
