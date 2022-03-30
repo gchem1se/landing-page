@@ -1,0 +1,16 @@
+$background-solid: rgba(229, 229, 224, .80);
+
+@mixin transparent-80-white{	
+	background-color: rgba(229, 299, 224, .8);
+}
+
+@mixin solid-white{	
+	background-color: rgba(229, 299, 224, 1);
+}
+
+@mixin glassy{
+}
+
+@mixin elevated-1px{
+	box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+}
