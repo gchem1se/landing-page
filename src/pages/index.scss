@@ -9,8 +9,16 @@
   color: #fcfcfc;
   font-family: "Inter", sans-serif;
   font-weight: 700;
-  font-size: 3rem;
   padding: 2rem;
+}
+
+.titleSection .content h3{
+  font-size: 3rem;
+  margin: 1rem 0;
+}
+
+.titleSection .content p{
+  color: $grey-text-color;
 }
 
 .CTA-btn{
@@ -63,4 +71,30 @@
 
 *:focus-visible{
   outline: none;
+}
+
+
+@media screen and (min-width: 950px){
+  
+}
+
+@media screen and (min-width: 1200px){
+  .titleSection{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .titleSection .content{
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+  }  
+
+  .titleSection .content h3{
+    margin: 0;
+  }
+   
+  .CTA-btn{
+    max-width: 15rem;
+  }
 }

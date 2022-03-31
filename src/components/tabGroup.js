@@ -1,4 +1,5 @@
 import * as React from "react"
+import _ from "lodash"
 import PropTypes from "prop-types"
 import { motion, AnimatePresence } from "framer-motion"
 import { Link } from "gatsby"
@@ -20,25 +21,38 @@ const TabGroup = ({tabs, className, id, offset}) =>
   let coords;
   let swipe = "";
 
-  const handleInteractionStart = (e) => {
+  const nextTab = () => {
+        setActiveTab(tabs[(tabs.indexOf(activeTab) + 1) % tabs.length])
+  }
+
+  const prevTab = () => {
+        setActiveTab(tabs[((tabs.indexOf(activeTab) - 1) % tabs.length + tabs.length) % tabs.length]) 
+  }
+
+  const handleTouchStart = (e) => {
     if(e._reactName === "onTouchStart"){
       coords = e.touches[0].clientX
     }
-    else if(e._reactName === "onMouseDown"){
-      coords = e.clientX
-    }
   }
 
-  const handleTouchUp = (e) => {
+  const handleTouchEnd = (e) => {
     if(swipe === "left"){
-        setActiveTab(tabs[(tabs.indexOf(activeTab) + 1) % tabs.length])
+      nextTab();
     }
     else if(swipe === "right"){
-        setActiveTab(tabs[((tabs.indexOf(activeTab) - 1) % tabs.length + tabs.length) % tabs.length]) 
+      prevTab();
     }
   }
 
-  const handleInteractionEnd = (e) => {
+
+  const _handleWheel = (e) => {
+    if(e.deltaY > 0) nextTab();
+    else prevTab();
+  }
+
+  const handleWheel = _.debounce(_handleWheel, 50);
+
+  const handleTouchMove = (e) => {
     swipe = ""
     if(e._reactName === "onTouchMove"){
       let diff = e.touches[0].clientX - coords;
@@ -48,17 +62,14 @@ const TabGroup = ({tabs, className, id, offset}) =>
         swipe = "left"
       }
     }
-    else if(e._reactName === "onMouseUp"){
-      let diff = e.clientX - coords;
-      if(Math.abs(diff > offset && diff > 0)){
-        setActiveTab(tabs[((tabs.indexOf(activeTab)  - 1) % tabs.length + tabs.length) % tabs.length])
-      }else if(Math.abs(diff) > offset && diff < 0){
-        setActiveTab(tabs[(tabs.indexOf(activeTab) + 1) % tabs.length])
-      }
-    }
   }
  
-  return <div className={'tab-wrapper ' + className} id={id} onTouchStart={handleInteractionStart} onTouchMove={handleInteractionEnd} onMouseDown={handleInteractionStart} onMouseUp={handleInteractionEnd} onTouchEnd={handleTouchUp}>
+  return <div className={'tab-wrapper ' + className} id={id} 
+      onTouchStart={handleTouchStart} 
+      onTouchMove={handleTouchMove} 
+      onMouseDown={handleTouchEnd} 
+      onWheel={(e) => handleWheel(e)}
+    >
     <AnimatePresence initial={false}>
     <div className="tabs">
     {

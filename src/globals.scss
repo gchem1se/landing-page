@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inria+Sans:wght@400;700&display=swap');
 
 $accent-color:	#4ADA61;
+$grey-text-color: #dcd2d2;
 
 @mixin transparent-80-white{	
 	background-color: rgba(229, 299, 224, .8);

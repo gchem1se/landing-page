@@ -66,9 +66,15 @@ const IndexPage = () => (
   <Layout>
     <Seo title="Home" />
     <section className="titleSection">
-      Leave a mark by not leaving a footprint
-      <br />
-      <a href="#carousel"><Button text={"Act now!"} className="CTA-btn"></Button></a>
+      <div className="content">
+        <h3>Leave a mark by not leaving a footprint</h3>
+        <p> 
+          Here at Greenprint we help companies find their better self by giving back to the world what the world has given to them.
+          <br/><br/>
+          We are living in a period of environmental crisis, so we strive to make you run your business and at the same time help our planet.
+        </p>
+        <a href="#carousel"><Button text={"Act now!"} className="CTA-btn"></Button></a>
+      </div>
     </section>
 
     <TabGroup
