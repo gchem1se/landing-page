@@ -14,7 +14,7 @@ const default_props = {
   active: true
 }
 
-const TabGroup = ({tabs, className}) => 
+const TabGroup = ({tabs, className, id, offset}) => 
 {
   const [activeTab, setActiveTab] = React.useState(tabs[0]);
   let coords;
@@ -34,28 +34,31 @@ const TabGroup = ({tabs, className}) =>
         setActiveTab(tabs[(tabs.indexOf(activeTab) + 1) % tabs.length])
     }
     else if(swipe === "right"){
-  
+        setActiveTab(tabs[((tabs.indexOf(activeTab) - 1) % tabs.length + tabs.length) % tabs.length]) 
     }
   }
 
   const handleInteractionEnd = (e) => {
     swipe = ""
     if(e._reactName === "onTouchMove"){
-      if(e.touches[0].clientX > coords - 50){
-      }else if(e.touches[0].clientX < coords){
+      let diff = e.touches[0].clientX - coords;
+      if(Math.abs(diff) > offset && diff > 0){
+        swipe = "right"
+      }else if(Math.abs(diff) > offset && diff < 0){
         swipe = "left"
       }
     }
     else if(e._reactName === "onMouseUp"){
-      if(e.clientX > coords){
-      }else if(e.clientX < coords - 50){
+      let diff = e.clientX - coords;
+      if(Math.abs(diff > offset && diff > 0)){
+        setActiveTab(tabs[((tabs.indexOf(activeTab)  - 1) % tabs.length + tabs.length) % tabs.length])
+      }else if(Math.abs(diff) > offset && diff < 0){
         setActiveTab(tabs[(tabs.indexOf(activeTab) + 1) % tabs.length])
       }
     }
   }
-
  
-  return <div className={'tab-wrapper ' + className} onTouchStart={handleInteractionStart} onTouchMove={handleInteractionEnd} onMouseDown={handleInteractionStart} onMouseUp={handleInteractionEnd} onTouchEnd={handleTouchUp}>
+  return <div className={'tab-wrapper ' + className} id={id} onTouchStart={handleInteractionStart} onTouchMove={handleInteractionEnd} onMouseDown={handleInteractionStart} onMouseUp={handleInteractionEnd} onTouchEnd={handleTouchUp}>
     <AnimatePresence initial={false}>
     <div className="tabs">
     {
@@ -63,7 +66,7 @@ const TabGroup = ({tabs, className}) =>
         tab === activeTab && 
           (<motion.div
             key={tab.id}
-            {...merge(default_props, tab.properties)}
+            {...merge({}, default_props, tab.properties)}
             >
         { tab.content }
         </motion.div>)
@@ -84,12 +87,16 @@ const TabGroup = ({tabs, className}) =>
 
 TabGroup.defaultProps = {
   tabs: [],
-  className: ''
+  className: '',
+  id: '',
+  offset: 100
 }
 
 TabGroup.propTypes = {
   tabs: PropTypes.array,
-  className: PropTypes.string
+  className: PropTypes.string,
+  id: PropTypes.string,
+  offset: PropTypes.number
 }
 
 export default TabGroup;

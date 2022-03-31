@@ -1,6 +1,6 @@
 import * as React from "react"
 import PropTypes from 'prop-types'
-import { faTree } from "@fortawesome/free-solid-svg-icons"
+import * as Icons from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import "./Bullet.scss"
 
@@ -18,7 +18,7 @@ const Bullet = ({ icon, title, text, iconClassName }) => {
 
 
 Bullet.defaultProps = {
-  icon: faTree,
+  icon: null,
   title: "",
   text: "",
   iconClassName: ""
