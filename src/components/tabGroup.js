@@ -67,7 +67,7 @@ const TabGroup = ({tabs, className, id, offset}) =>
   return <div className={'tab-wrapper ' + className} id={id} 
       onTouchStart={handleTouchStart} 
       onTouchMove={handleTouchMove} 
-      onMouseDown={handleTouchEnd} 
+      onTouchEnd={handleTouchEnd} 
       onWheel={(e) => handleWheel(e)}
     >
     <AnimatePresence initial={false}>
