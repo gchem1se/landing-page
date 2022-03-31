@@ -4,28 +4,35 @@
     text-align: left;
     display: grid;
     grid-template-areas: 
-        "icon title" 
-        "null description";
+        "icon" 
+        "title"
+        "description";
     grid-template-columns: auto 1fr;
     grid-template-rows: auto auto;
+    grid-row-gap: .2rem;
     align-items: center;
     grid-column-gap: 1rem;
     font-family: "Inria sans", sans-serif;
+    justify-items: center;
 }
 
 .bulletTitle {
     display: flex;
-    gap: 2rem;
     align-items: center;
     justify-content: left;
     grid-area: title;
+    font-size: 24px;
 }
+
+$icon-size: 40px;
 
 .bullet-icon {
     grid-area: icon;
-    height: 32px;
-    width: 32px;
+    height: $icon-size;
+    width: $icon-size;
     color: $accent-color;
+    filter: drop-shadow(0 4px 40px rgba(0,0,0,.1));
+    --webkit-filter: drop-shadow(0 4px 40px rgba(0,0,0,.1));
 }
 
 .bulletTitle h3, h4 {
@@ -33,12 +40,21 @@
     font-family: 'Inter', sans-serif;
     font-weight: bold;
     margin: .2rem;
+    text-align: center;
 }
 
 .bullet-content{
     grid-area: description;
+    text-align: center;
+    font-size: 20px;
 }
 
 h4 {
     color: $grey-text-color;
+}
+
+@media screen and (min-width: 950px){
+    .bullet-content{
+        text-align: left;
+    }
 }

@@ -1,0 +1,66 @@
+@import "../globals.scss";
+@import url('https://fonts.googleapis.com/css2?family=Inria+Sans:wght@700&display=swap');
+
+/* Variables */
+$header-padding: .5rem;
+
+.header-container {
+	width: calc(100% - 2*$header-padding);
+	display: flex;
+    flex-direction: column;
+	padding: 0 $header-padding;
+	align-items: center;
+	justify-content: center;
+	font-family: 'Inter', sans-serif;
+	font-weight: bold;
+	font-size: 18px;
+	z-index: 40;
+    filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25));
+	-webkit-filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25));
+	@include glassy;
+	@include elevated-1px;
+	position: sticky;
+	top: 0rem;
+    color: #aaf683;
+}
+
+.navbar {
+    top: 4rem;
+    padding: 1rem 1rem;
+}
+
+.header{
+	width: calc(100%);
+	display: flex;
+	padding: 1rem .5rem;
+	align-items: center;
+	justify-content: center;
+	font-family: 'Inria Sans', sans-serif;
+	font-weight: bold;
+	font-size: 1.5rem;
+	z-index: 40;
+	@include elevated-1px;
+	@include glassy;
+	position: sticky;
+	top: 0
+}
+
+.header h1 a{
+	text-decoration: none;
+	color: white;
+	@include elevated-1px;
+}
+
+.navbar-link{
+    padding: 0 .5rem;
+    color: $accent-color;
+	text-decoration: none;
+	@include elevated-1px;
+}
+
+
+
+.text-green{
+	color: $accent-color;
+}
+

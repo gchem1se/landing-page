@@ -17,14 +17,13 @@ $default-padding: .5rem;
 	padding: .5rem;
 }
 
-.tabs{
+.tab{
 	display: flex;
 	flex-wrap: nowrap;
-}
-
-.tab{
 	width: 100%;
-	min-height: 1rem;
+	min-height: 42rem;
+	justify-content: center;
+	align-items: center;
 }
 
 .hide{
@@ -55,4 +54,11 @@ $default-padding: .5rem;
 	background-color: rgba(229, 229, 224, 1);
 	width: 24px;
 	height: 24px;
+}
+
+
+@media screen and(min-width: 950px){
+	.tab{
+		min-height: 20rem;
+	}
 }

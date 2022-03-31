@@ -33,7 +33,7 @@ const Footer = ({ sections, className, siteTitle }) => (
               <ul className="section-content">
               {
                 s.links.map((l) => (
-                  <li className="section-item"><a href={l.href} >{l.text}</a></li>
+                  <li className="section-item"><Link href={l.href} >{l.text}</Link></li>
                 ))
               } 
               </ul>

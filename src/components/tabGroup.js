@@ -15,18 +15,21 @@ const default_props = {
   active: true
 }
 
-const TabGroup = ({tabs, className, id, offset}) => 
+const TabGroup = ({tabs, className, id, offset, slideshow}) => 
 {
   const [activeTab, setActiveTab] = React.useState(tabs[0]);
+  const hasRendered = React.useRef(false);
+  const tabWrapperRef = React.useRef();
   let coords;
   let swipe = "";
 
   const nextTab = () => {
-        setActiveTab(tabs[(tabs.indexOf(activeTab) + 1) % tabs.length])
+    console.log(tabs.indexOf(activeTab))
+    setActiveTab(tabs[(tabs.indexOf(activeTab) + 1) % tabs.length])
   }
 
   const prevTab = () => {
-        setActiveTab(tabs[((tabs.indexOf(activeTab) - 1) % tabs.length + tabs.length) % tabs.length]) 
+    setActiveTab(tabs[((tabs.indexOf(activeTab) - 1) % tabs.length + tabs.length) % tabs.length]) 
   }
 
   const handleTouchStart = (e) => {
@@ -43,6 +46,7 @@ const TabGroup = ({tabs, className, id, offset}) =>
       prevTab();
     }
   }
+  console.log(tabs.indexOf(activeTab), "ciao")
 
 
   const _handleWheel = (e) => {
@@ -51,6 +55,17 @@ const TabGroup = ({tabs, className, id, offset}) =>
   }
 
   const handleWheel = _.debounce(_handleWheel, 50);
+
+  React.useEffect(() => {
+    if(!hasRendered.current){
+      console.log("dentro")
+      if(slideshow) setInterval(nextTab, 2000);
+      tabWrapperRef.current.addEventListener('wheel', (e) => {
+        e.preventDefault();
+      }, { passive: false })
+      hasRendered.current = true;
+    }
+  }, [hasRendered, activeTab])
 
   const handleTouchMove = (e) => {
     swipe = ""
@@ -65,13 +80,14 @@ const TabGroup = ({tabs, className, id, offset}) =>
   }
  
   return <div className={'tab-wrapper ' + className} id={id} 
+      ref={tabWrapperRef}
       onTouchStart={handleTouchStart} 
       onTouchMove={handleTouchMove} 
       onTouchEnd={handleTouchEnd} 
-      onWheel={(e) => handleWheel(e)}
+      onWheel={(e) => { handleWheel(e);}} // TODO: prevent scroll
     >
     <AnimatePresence initial={false}>
-    <div className="tabs">
+    <div className="tab">
     {
       tabs.map((tab) => (
         tab === activeTab && 
@@ -100,14 +116,16 @@ TabGroup.defaultProps = {
   tabs: [],
   className: '',
   id: '',
-  offset: 100
+  offset: 100,
+  slideshow: false
 }
 
 TabGroup.propTypes = {
   tabs: PropTypes.array,
   className: PropTypes.string,
   id: PropTypes.string,
-  offset: PropTypes.number
+  offset: PropTypes.number,
+  slideshow: PropTypes.bool
 }
 
 export default TabGroup;

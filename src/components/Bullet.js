@@ -4,14 +4,18 @@ import * as Icons from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import "./Bullet.scss"
 
-const Bullet = ({ icon, title, text, iconClassName }) => {
+const Bullet = ({ icon, title, sections, iconClassName }) => {
   return (
     <div className="bulletElement">
       <FontAwesomeIcon icon={icon} className={"bullet-icon " + (iconClassName || '')}/>
       <div className={"bulletTitle "}>
         <h3>{title}</h3>
       </div>
-      <h4 className="bullet-content">{text}</h4>
+      <h4 className="bullet-content">
+        {
+          sections.map((s) => s)
+        }
+      </h4>
     </div>
   )
 }
@@ -20,14 +24,14 @@ const Bullet = ({ icon, title, text, iconClassName }) => {
 Bullet.defaultProps = {
   icon: null,
   title: "",
-  text: "",
+  sections: [],
   iconClassName: ""
 }
 
 Bullet.propTypes = {
   icon: FontAwesomeIcon,
   title: PropTypes.string,
-  text: PropTypes.string,
+  sections: PropTypes.array,
   iconClassName: PropTypes.string
 }
 

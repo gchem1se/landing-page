@@ -1,7 +1,9 @@
 @import "../globals.scss";
 
+$carousel-margin: 3rem;
+
 .carousel{
-  background-color: rgba(30, 30, 30, .2)
+  background-color: rgba(30, 30, 30, .2);
 }
 
 .titleSection {
@@ -10,15 +12,40 @@
   font-family: "Inter", sans-serif;
   font-weight: 700;
   padding: 2rem;
+  padding-top: 1rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "only";
+}
+
+.titleSection .content{
+  grid-area: only;
+}
+
+.titleSection .banner-div{
+  grid-area: only;
+  z-index: -1;
+}
+
+.banner-div .banner-icon{
+  transform: translateX(8rem);
+  max-height: 12rem;
 }
 
 .titleSection .content h3{
   font-size: 3rem;
   margin: 1rem 0;
+  @include elevated-1px;
 }
 
 .titleSection .content p{
   color: $grey-text-color;
+  font-size: 20px;
+}
+
+.banner-icon{
+  @include elevated-1px;
 }
 
 .CTA-btn{
@@ -47,21 +74,20 @@
   margin-bottom: 0;
 }
 
-.tab-3{
+.tab-form{
   display: flex;
   flex-direction: column;
-  padding: 1rem 3rem;
 }
 
-.tab-3 .form-field{
+.tab-form .form-field{
   margin: .2rem 0;
 }
 
-.tab-3 .form-field:first-child{
+.tab-form .form-field:first-child{
   margin-top: 0;
 }
 
-.tab-3 .btn{
+.tab-form .btn{
   margin-top: .2rem;
 }
 
@@ -73,6 +99,106 @@
   outline: none;
 }
 
+.form-btn{
+  padding: 1rem 2rem;
+  max-width: 12rem;
+  margin-left: auto;
+
+}
+
+.contact-us-title {
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0rem;
+  @include elevated-1px;
+  text-align: center;
+}
+
+.join-us{
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;;
+  padding: 1rem 0;
+  padding-bottom: 0;
+  padding-top: 2rem;
+}
+
+.join-us-content{
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 3rem;
+}
+
+.sponsors{
+  display:flex;
+  flex-direction: column;
+  padding-top: 1rem;
+}
+
+.sponsors p{
+  @include simple-text;
+  @include elevated-1px;
+  margin: 0;
+  margin-top: 1rem;
+  font-size: 24px;
+  font-weight: bold;
+  text-align:center;
+}
+
+.logos-list{
+  display: flex;
+  flex-wrap: wrap;
+  padding: .5rem;
+  justify-content: center;
+  margin:0;
+}
+
+.sponsors-logo{
+  list-style: none;
+  width: 10rem;
+  padding: 1rem;
+  @include elevated-1px;
+}
+
+.sponsors-logo a{
+  display: flex;
+  align-items: center;
+}
+
+.newsletter {
+  color: white;
+  margin: 0;
+  font-size: 20px;
+  padding: 3rem 3rem;
+  padding-top: 0;
+}
+
+.newsletter-title {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0rem;
+  @include elevated-1px;
+}
+
+.newsletter-subtitle{
+  color: $grey-text-color;
+  margin-top: 0;
+}
+
+.newsletter-field{
+  margin-bottom: 1rem;
+  width: calc(100% - 2rem);
+}
+
+.newsletter-form{
+  display: flex;
+  flex-direction: column;
+  @include glassy;
+  @include elevated-1px;
+  border-radius: $border-radius;
+  padding: 1rem;
+}
 
 @media screen and (min-width: 950px){
   
@@ -82,19 +208,86 @@
   .titleSection{
     display: grid;
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "content icon";
+    padding-top: 2rem;
   }
 
   .titleSection .content{
     display: flex;
     flex-direction: column;
     padding: 2rem;
+    grid-area: content;
   }  
+
+  .titleSection .banner-div{
+    grid-area: icon;
+  }
+
+  .banner-div .banner-icon{
+    max-height: 30rem;
+  }
 
   .titleSection .content h3{
     margin: 0;
   }
-   
-  .CTA-btn{
+
+  .title-CTA{
     max-width: 15rem;
+  }
+
+  .carousel{ 
+    margin: 0 $carousel-margin;
+    width: calc(100% - 2*$carousel-margin - 1rem);
+    border-radius: $border-radius;
+  }
+
+  .titleSection .content h3{
+    font-size: 5rem;
+  }
+
+  .join-us{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .join-us-content{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "tab-form sponsors";
+  }
+
+  .join-us .tab-form{
+    grid-area: tab-form;
+
+  }
+
+  .join-us .sponsors{
+    grid-area: sponsors;
+  }
+
+  .newsletter-form{
+    flex-direction: row;
+  }
+
+  .newsletter-field{
+    margin-bottom: 0;
+    margin-right: 1rem;
+  }
+
+  .sponsors{
+    padding-top: 0;
+  }
+
+  .sponsors-logo{
+    width: 14rem;
+  }
+
+  .sponsors p{
+    padding-left: 1rem;
+  }
+
+  #sponsor-jetop{
+    width: 8rem
   }
 }

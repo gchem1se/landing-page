@@ -11,15 +11,20 @@ $header-padding: .5rem;
 	padding: .5rem;
 	align-items: center;
 	justify-content: center;
-	border-bottom:	1px solid $accent-color;
 	font-family: 'Inria Sans', sans-serif;
 	font-weight: bold;
 	font-size: 20px;
+	z-index: 40;
+	@include elevated-1px;
+	@include glassy;
+	position: sticky;
+	top: 0
 }
 
 .header h1 a{
 	text-decoration: none;
 	color: white;
+	@include elevated-1px;
 }
 
 .text-green{
